@@ -8,7 +8,7 @@ const getValidInput = (type: string, input: string) => {
     case "Binary":
       validInput = input.replace(/[^01]/g, "");
       break;
-    case "Hex":
+    case "Hexadecimal":
       validInput = input.replace(/[^0-9a-fA-F]/g, "");
       break;
     case "Octal":

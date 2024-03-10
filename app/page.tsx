@@ -1,3 +1,5 @@
+"use client";
+
 import { ModeToggle } from "@/components/ui/ModeToggle";
 import {
   Card,
@@ -6,10 +8,11 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
-import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
+import { NumberConverterInput } from "@/components/NumberConverterInput";
+import { useState } from "react";
 
 const Home = () => {
+  const [num, setNum] = useState<string>("");
 
   return (
     <div>
@@ -25,27 +28,39 @@ const Home = () => {
             </CardDescription>
           </CardHeader>
           <CardContent>
-            <div className="pb-1.5 grid w-full max-w-sm items-center gap-1.5">
-              <Label htmlFor="decimal">Decimal</Label>
-              <Input type="text" id="decimal" placeholder="1234" />
-            </div>
-            <div className="pb-1.5 grid w-full max-w-sm items-center gap-1.5">
-              <Label htmlFor="binary">Binary</Label>
-              <Input type="text" id="binary" placeholder="10011010010" />
-            </div>
-            <div className="pb-1.5 grid w-full max-w-sm items-center gap-1.5">
-              <Label htmlFor="hex">Hex</Label>
-              <Input type="text" id="hex" placeholder="4d2" />
-            </div>
-            <div className="grid w-full max-w-sm items-center gap-1.5">
-              <Label htmlFor="octal">octal</Label>
-              <Input type="text" id="octal" placeholder="2322" />
-            </div>
+            <NumberConverterInput
+              label="Decimal"
+              placeholder="123"
+              base={10}
+              value={num}
+              setValue={setNum}
+            />
+            <NumberConverterInput
+              label="Binary"
+              placeholder="1111011"
+              base={2}
+              value={num}
+              setValue={setNum}
+            />
+            <NumberConverterInput
+              label="Hexadecimal"
+              placeholder="7b"
+              base={16}
+              value={num}
+              setValue={setNum}
+            />
+            <NumberConverterInput
+              label="Octal"
+              placeholder="173"
+              base={8}
+              value={num}
+              setValue={setNum}
+            />
           </CardContent>
         </Card>
       </div>
     </div>
   );
-}
+};
 
 export default Home;
