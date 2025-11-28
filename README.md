@@ -1,36 +1,69 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Number Converter
+
+I got tired of having to hit the "convert" button when using online base converter calculators, so here we are. Check out the deployed app here:
+https://number-converter-nextjs.vercel.app/
+
+A modern, real-time number base converter built with Next.js 16 and React 19. Convert numbers seamlessly between decimal, binary, hexadecimal, and octal number systems with an intuitive interface and dark mode support.
+
+## Features
+
+- **Real-time Conversion**: Instantly convert numbers between different bases as you type
+- **Multiple Number Bases**: Support for Decimal (base 10), Binary (base 2), Hexadecimal (base 16), and Octal (base 8)
+- **Dark Mode**: Beautiful dark/light theme with smooth transitions and system preference detection
+- **Modern UI**: Clean, responsive interface built with shadcn/ui and Tailwind CSS
+- **Type-safe**: Fully typed with TypeScript for better development experience
+
+## Tech Stack
+
+- **Framework**: Next.js 16.0.5
+- **React**: 19.2.0
+- **TypeScript**: 5.x
+- **Styling**: Tailwind CSS v4
+- **UI Components**: shadcn/ui with Radix UI primitives
+- **Theme**: next-themes for dark mode support
+- **Icons**: Lucide React
+- **Package Manager**: Bun
 
 ## Getting Started
 
-First, run the development server:
+### Prerequisites
+
+- [Bun](https://bun.sh) installed on your machine
+
+### Development
+
+1. Install dependencies:
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
+bun install
+```
+
+2. Run the development server:
+
+```bash
 bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+3. Open [http://localhost:3000](http://localhost:3000) in your browser to see the application.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+### Build for Production
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+```bash
+bun run build
+bun start
+```
 
-## Learn More
+## How It Works
 
-To learn more about Next.js, take a look at the following resources:
+The converter uses a custom base conversion algorithm that:
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+1. Accepts input in any supported base (2, 8, 10, 16)
+2. Converts the input to decimal (base 10) as an intermediate step
+3. Converts from decimal to the target base for display
+4. Validates input to ensure only valid digits for each base are accepted
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+All conversions happen in real-time as you type, providing instant feedback across all number bases.
 
-## Deploy on Vercel
+## License
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
