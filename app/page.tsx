@@ -9,21 +9,17 @@ import {
 } from "@/components/ui/card";
 import { NumberConverterInput } from "@/components/NumberConverterInput";
 import { useState } from "react";
-import { AnimatedThemeToggler } from "@/components/animated-theme-toggler";
 
 const Home: React.FC = () => {
   const [num, setNum] = useState<string>("");
 
   return (
-    <div className="w-screen h-screen flex flex-col items-center justify-center">
-      <div className="w-96 pb-4 gap-4">
-        <AnimatedThemeToggler />
-      </div>
-      <Card className="w-96">
+    <div className="relative w-full h-dvh overflow-hidden flex flex-col items-center justify-center p-4">
+      <Card className="w-full max-w-md">
         <CardHeader>
           <CardTitle>Number Converter</CardTitle>
           <CardDescription>
-            Convert between different number bases in real time
+            Convert between different bases in real time
           </CardDescription>
         </CardHeader>
         <CardContent>
