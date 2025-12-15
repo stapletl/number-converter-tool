@@ -31,7 +31,7 @@ export function BaseSettingsPopover({
   return (
     <Popover>
       <PopoverTrigger asChild>
-        <Button variant="ghost" size="icon" aria-label="Base settings">
+        <Button variant="outline" size="icon" aria-label="Base settings">
           <Settings className="h-4 w-4" />
         </Button>
       </PopoverTrigger>

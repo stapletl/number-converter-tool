@@ -1,5 +1,7 @@
 "use client";
 
+import { BaseSettingsPopover } from "@/components/BaseSettingsPopover";
+import { NumberConverterInput } from "@/components/NumberConverterInput";
 import {
   Card,
   CardAction,
@@ -8,13 +10,12 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
-import { NumberConverterInput } from "@/components/NumberConverterInput";
-import { useState, useCallback, useEffect, useRef } from "react";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { BaseSettingsPopover } from "@/components/BaseSettingsPopover";
-import { AVAILABLE_BASES, type BaseId } from "@/lib/baseConfig";
 import { useBasePreferences } from "@/hooks/useBasePreferences";
+import { AVAILABLE_BASES, type BaseId } from "@/lib/baseConfig";
+import { useCallback, useEffect, useRef, useState } from "react";
+import styles from "./page.module.css";
 
 const Home: React.FC = () => {
   const { preferences, updatePreferences } = useBasePreferences();
@@ -65,52 +66,8 @@ const Home: React.FC = () => {
     [updatePreferences]
   );
 
-  // CSS for smooth animations
-  const animationStyles = `
-    @keyframes fadeInSlide {
-      from {
-        opacity: 0;
-        transform: translateY(-10px);
-        max-height: 0;
-        margin-bottom: 0;
-      }
-      to {
-        opacity: 1;
-        transform: translateY(0);
-        max-height: 200px;
-      }
-    }
-
-    @keyframes fadeOutSlide {
-      from {
-        opacity: 1;
-        transform: translateY(0);
-        max-height: 200px;
-      }
-      to {
-        opacity: 0;
-        transform: translateY(-10px);
-        max-height: 0;
-        margin-bottom: 0;
-      }
-    }
-
-    .field-container {
-      animation: fadeInSlide 0.3s ease-out forwards;
-    }
-
-    .field-container-available {
-      animation: fadeOutSlide 0.3s ease-out forwards;
-    }
-
-    .card-content-animated {
-      transition: all 0.3s ease-out;
-    }
-  `;
-
   return (
     <div className="relative w-full h-dvh overflow-auto flex flex-col items-center justify-center p-4">
-      <style>{animationStyles}</style>
       <Card className="w-full max-w-md mt-12">
         <CardHeader>
           <CardTitle>Number Converter</CardTitle>
@@ -122,15 +79,17 @@ const Home: React.FC = () => {
             />
           </CardAction>
         </CardHeader>
-        <CardContent className="flex flex-col gap-4 card-content-animated">
+        <CardContent
+          className={`flex flex-col gap-4 ${styles.cardContentAnimated}`}
+        >
           {AVAILABLE_BASES.map((baseConfig) => {
             // Only render if this base is in displayedBases
             if (!displayedBases.includes(baseConfig.id)) return null;
 
             const isAvailable = availableBases.has(baseConfig.id);
             const containerClass = isAvailable
-              ? "field-container-available"
-              : "field-container";
+              ? styles.fieldContainerAvailable
+              : styles.fieldContainer;
 
             if (baseConfig.id === "custom") {
               return (
