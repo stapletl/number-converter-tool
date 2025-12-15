@@ -1,25 +1,23 @@
-const getValidInput = (type: string, input: string) => {
-  let validInput = "";
-
-  switch (type) {
-    case "Decimal":
-      validInput = input.replace(/[^0-9]/g, "");
-      break;
-    case "Binary":
-      validInput = input.replace(/[^01]/g, "");
-      break;
-    case "Hexadecimal":
-      validInput = input.replace(/[^0-9a-fA-F]/g, "");
-      break;
-    case "Octal":
-      validInput = input.replace(/[^0-7]/g, "");
-      break;
-    case "Ascii":
-    default:
-      break;
+export const getValidCharsForBase = (base: number): string => {
+  if (base < 2 || base > 64) {
+    return "";
   }
 
-  return validInput;
+  const chars = '0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz+/';
+  return chars.slice(0, base);
+};
+
+const getValidInput = (base: number, input: string) => {
+  if (base < 2 || base > 64) {
+    return { validInput: "", hasInvalidChars: false, validChars: "" };
+  }
+
+  const validChars = getValidCharsForBase(base);
+  const pattern = new RegExp(`[^${validChars}]`, 'gi');
+  const validInput = input.replace(pattern, '');
+  const hasInvalidChars = validInput !== input;
+
+  return { validInput, hasInvalidChars, validChars };
 };
 
 export default getValidInput;
