@@ -75,10 +75,17 @@ const Home: React.FC = () => {
           <CardDescription>Real-time base conversion</CardDescription>
           <CardAction>
             <div className="flex gap-2">
-              <DataTypeRangeStatus baseTenValue={num} />
+              <DataTypeRangeStatus
+                baseTenValue={num}
+                endianness={preferences.endianness}
+              />
               <BaseSettingsPopover
                 selectedBases={selectedBases}
                 onSelectionChange={handleBaseSelectionChange}
+                endianness={preferences.endianness}
+                onEndiannessChange={(endianness) =>
+                  updatePreferences({ endianness })
+                }
               />
             </div>
           </CardAction>

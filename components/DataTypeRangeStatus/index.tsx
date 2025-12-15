@@ -6,14 +6,21 @@ import {
   PopoverTrigger,
 } from "@/components/ui/popover";
 import { AVAILABLE_DATA_TYPES, isInRange } from "@/lib/dataTypeConfig";
+import {
+  formatByteRepresentation,
+  isMultiByte,
+  type Endianness,
+} from "@/lib/byteUtils";
 import { LaptopMinimalCheck, Check, X } from "lucide-react";
 
 type DataTypeRangeStatusProps = {
   baseTenValue: string;
+  endianness: Endianness;
 };
 
 export function DataTypeRangeStatus({
   baseTenValue,
+  endianness,
 }: DataTypeRangeStatusProps) {
   return (
     <Popover>
@@ -32,15 +39,29 @@ export function DataTypeRangeStatus({
           <div className="space-y-3">
             {AVAILABLE_DATA_TYPES.map((dataType) => {
               const inRange = isInRange(baseTenValue, dataType.range);
+              const byteRep = isMultiByte(dataType.id)
+                ? formatByteRepresentation(
+                    baseTenValue,
+                    dataType.id,
+                    endianness
+                  )
+                : null;
 
               return (
                 <div
                   key={dataType.id}
-                  className="flex items-center justify-between"
+                  className="flex items-start justify-between gap-2"
                 >
-                  <Label className="text-sm font-normal">
-                    {dataType.label}
-                  </Label>
+                  <div className="flex flex-col gap-0.5">
+                    <Label className="text-sm font-normal">
+                      {dataType.label}
+                    </Label>
+                    {byteRep && (
+                      <span className="text-xs font-mono text-muted-foreground">
+                        {byteRep.formatted}
+                      </span>
+                    )}
+                  </div>
                   {inRange ? (
                     <Check className="h-4 w-4 text-green-600 dark:text-green-400" />
                   ) : (

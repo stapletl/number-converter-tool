@@ -6,17 +6,23 @@ import {
   PopoverContent,
   PopoverTrigger,
 } from "@/components/ui/popover";
+import { Switch } from "@/components/ui/switch";
 import { AVAILABLE_BASES, type BaseId } from "@/lib/baseConfig";
+import type { Endianness } from "@/lib/byteUtils";
 import { Settings } from "lucide-react";
 
 type BaseSettingsPopoverProps = {
   selectedBases: BaseId[];
   onSelectionChange: (selectedIds: BaseId[]) => void;
+  endianness: Endianness;
+  onEndiannessChange: (endianness: Endianness) => void;
 };
 
 export function BaseSettingsPopover({
   selectedBases,
   onSelectionChange,
+  endianness,
+  onEndiannessChange,
 }: BaseSettingsPopoverProps) {
   const handleToggle = (baseId: BaseId, checked: boolean | "indeterminate") => {
     if (checked === "indeterminate") return;
@@ -62,6 +68,26 @@ export function BaseSettingsPopover({
                 </div>
               );
             })}
+          </div>
+          <div className="pt-3 border-t space-y-3">
+            <h4 className="font-medium text-sm">Byte Order</h4>
+            <div className="flex items-center justify-between">
+              <Label htmlFor="endianness-toggle" className="text-sm font-normal">
+                Little-endian
+              </Label>
+              <Switch
+                id="endianness-toggle"
+                checked={endianness === "little"}
+                onCheckedChange={(checked) =>
+                  onEndiannessChange(checked ? "little" : "big")
+                }
+              />
+            </div>
+            <p className="text-xs text-muted-foreground">
+              {endianness === "big"
+                ? "Most significant byte first (Big-endian)"
+                : "Least significant byte first (Little-endian)"}
+            </p>
           </div>
         </div>
       </PopoverContent>

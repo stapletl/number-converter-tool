@@ -5,15 +5,18 @@ import {
   LOCALSTORAGE_KEY,
   type BaseId,
 } from "@/lib/baseConfig";
+import type { Endianness } from "@/lib/byteUtils";
 
 export type BasePreferences = {
   selectedBases: BaseId[];
   customBase: number;
+  endianness: Endianness;
 };
 
 const getDefaults = (): BasePreferences => ({
   selectedBases: DEFAULT_SELECTED_BASES,
   customBase: 5,
+  endianness: "big",
 });
 
 const loadPreferences = (): BasePreferences => {
@@ -33,16 +36,23 @@ const loadPreferences = (): BasePreferences => {
 
     // Validate base IDs
     const validIds: BaseId[] = AVAILABLE_BASES.map((b) => b.id);
-    const validatedBases = parsed.selectedBases.filter((id: string): id is BaseId =>
-      validIds.includes(id as BaseId)
+    const validatedBases = parsed.selectedBases.filter(
+      (id: string): id is BaseId => validIds.includes(id as BaseId)
     );
 
     // Ensure at least one base
     if (validatedBases.length === 0) return getDefaults();
 
+    // Validate endianness
+    const endianness: Endianness =
+      parsed.endianness === "big" || parsed.endianness === "little"
+        ? parsed.endianness
+        : "little";
+
     return {
       selectedBases: validatedBases,
       customBase: Math.min(64, Math.max(2, parsed.customBase)),
+      endianness,
     };
   } catch {
     return getDefaults();
