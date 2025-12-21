@@ -150,6 +150,19 @@ const Home: React.FC = () => {
           })}
         </CardContent>
       </Card>
+      <div className="flex gap-6 mt-2 text-center text-sm text-muted-foreground">
+        <div>&copy; {new Date().getFullYear()} Logan Stapleton</div>
+        <div>
+          <a
+            href="https://github.com/stapletl/number-converter-tool"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="hover:underline hover:text-foreground transition-colors"
+          >
+            GitHub
+          </a>
+        </div>
+      </div>
     </div>
   );
 };
