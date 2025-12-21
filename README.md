@@ -1,7 +1,11 @@
 # Number Converter
 
+[![Vercel Deploy](https://deploy-badge.vercel.app/vercel/number-converter-tool?style=for-the-badge)](https://number-converter-tool.vercel.app/) [![Licence](https://img.shields.io/badge/License-MIT-blue.svg?style=for-the-badge)](./LICENSE)
+
+## About
+
 I got tired of having to hit the "convert" button when using online base converter calculators, so here we are. Check out the deployed app here:
-https://number-converter-nextjs.vercel.app/
+https://number-converter-tool.vercel.app/
 
 A modern, real-time number base converter built with Next.js 16 and React 19. Convert numbers seamlessly between decimal, binary, hexadecimal, and octal number systems with an intuitive interface and dark mode support.
 
