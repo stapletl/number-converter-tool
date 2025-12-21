@@ -4,8 +4,8 @@
 
 ## About
 
-I got tired of having to hit the "convert" button when using online base converter calculators, so here we are. Check out the deployed app here:
-https://number-converter-tool.vercel.app/
+I got tired of having to hit the "convert" button when using online base converter calculators, so here we are. [Check out the deployed app here](https://number-converter-tool.vercel.app/)
+
 
 A modern, real-time number base converter built with Next.js 16 and React 19. Convert numbers seamlessly between decimal, binary, hexadecimal, and octal number systems with an intuitive interface and dark mode support.
 
@@ -28,7 +28,7 @@ A modern, real-time number base converter built with Next.js 16 and React 19. Co
 - **Icons**: Lucide React
 - **Package Manager**: Bun
 
-## Getting Started
+## Running the project locally
 
 ### Prerequisites
 
