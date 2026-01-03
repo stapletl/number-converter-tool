@@ -39,7 +39,7 @@ export default function RootLayout({
             <AnimatedThemeToggler />
           </div>
           {children}
-          <Toaster richColors={true} position="top-left" />
+          <Toaster richColors={true} position="top-center" />
         </ThemeProvider>
       </body>
     </html>
