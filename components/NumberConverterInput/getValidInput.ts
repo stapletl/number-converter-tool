@@ -13,9 +13,17 @@ const getValidInput = (base: number, input: string) => {
   }
 
   const validChars = getValidCharsForBase(base);
-  const pattern = new RegExp(`[^${validChars}]`, 'gi');
-  const validInput = input.replace(pattern, '');
-  const hasInvalidChars = validInput !== input;
+
+  // For bases <= 36, make input case-insensitive by normalizing to uppercase
+  // For bases > 36, preserve case since both upper and lowercase are different digits
+  let normalizedInput = input;
+  if (base <= 36) {
+    normalizedInput = input.toUpperCase();
+  }
+
+  const pattern = new RegExp(`[^${validChars}]`, base <= 36 ? 'gi' : 'g');
+  const validInput = normalizedInput.replace(pattern, '');
+  const hasInvalidChars = validInput !== normalizedInput;
 
   return { validInput, hasInvalidChars, validChars };
 };

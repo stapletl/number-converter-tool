@@ -68,7 +68,7 @@ const Home: React.FC = () => {
   );
 
   return (
-    <div className="relative w-full h-dvh overflow-auto flex flex-col items-center justify-center p-4">
+    <div className="relative w-full min-h-dvh flex flex-col items-center justify-center p-4">
       <Card className="w-full max-w-md mt-12">
         <CardHeader>
           <CardTitle>Number Converter</CardTitle>
@@ -106,7 +106,7 @@ const Home: React.FC = () => {
               return (
                 <div
                   key="custom"
-                  className={`${containerClass} flex items-center gap-4`}
+                  className={`${containerClass} flex items-start gap-4`}
                 >
                   <NumberConverterInput
                     label="Custom"
@@ -120,6 +120,7 @@ const Home: React.FC = () => {
                     </Label>
                     <Input
                       type="number"
+                      inputMode="numeric"
                       id="custom-base-input"
                       value={customBase}
                       min={2}
