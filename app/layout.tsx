@@ -1,5 +1,6 @@
 import { AnimatedThemeToggler } from "@/components/animated-theme-toggler";
 import { Toaster } from "@/components/ui/sonner";
+import { Analytics } from "@vercel/analytics/next";
 import type { Metadata } from "next";
 import { ThemeProvider } from "next-themes";
 import { Geist, Geist_Mono } from "next/font/google";
@@ -109,6 +110,7 @@ export default function RootLayout({
           {children}
           <Toaster richColors={true} position="top-center" />
         </ThemeProvider>
+        <Analytics />
       </body>
     </html>
   );
