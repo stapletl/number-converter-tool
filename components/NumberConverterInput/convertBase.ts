@@ -46,18 +46,18 @@ const convertBase = (
   let decValue = value
     .split("")
     .reverse()
-    .reduce((carry: number, digit: string, index: number) => {
+    .reduce((carry: bigint, digit: string, index: number) => {
       const fromIndex = fromRange.indexOf(digit);
       if (fromIndex === -1) {
         throw new Error(`Invalid digit ${digit} for base ${fromBase}.`);
       }
-      return carry + fromIndex * Math.pow(fromBase, index);
-    }, 0);
+      return carry + BigInt(fromIndex) * BigInt(fromBase) ** BigInt(index);
+    }, 0n);
 
   let newValue = value === "0" ? "0" : "";
-  while (decValue > 0) {
-    newValue = toRange[decValue % toBase] + newValue;
-    decValue = Math.floor(decValue / toBase); // Use Math.floor for integer division
+  while (decValue > 0n) {
+    newValue = toRange[Number(decValue % BigInt(toBase))] + newValue;
+    decValue = decValue / BigInt(toBase);
   }
   return newValue || "";
 };
