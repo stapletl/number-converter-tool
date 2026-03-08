@@ -1,6 +1,6 @@
 # Number Converter
 
-[![Vercel Deploy](https://deploy-badge.vercel.app/vercel/number-converter-tool?style=for-the-badge)](https://number-converter-tool.vercel.app/) [![Licence](https://img.shields.io/badge/License-MIT-blue.svg?style=for-the-badge)](./LICENSE)
+[![Vercel Deploy](https://deploy-badge.vercel.app/vercel/number-converter-tool?style=for-the-badge)](https://number-converter-tool.vercel.app/) [![Tests](https://img.shields.io/github/actions/workflow/status/stapletl/number-converter-tool/test.yml?style=for-the-badge&label=Tests)](https://github.com/stapletl/number-converter-tool/actions/workflows/test.yml) [![Licence](https://img.shields.io/badge/License-MIT-blue.svg?style=for-the-badge)](./LICENSE)
 
 ## About
 
