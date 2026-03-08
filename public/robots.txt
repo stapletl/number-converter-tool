@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://number-converter-tool.vercel.app/sitemap.xml
