@@ -9,18 +9,15 @@ import { AVAILABLE_DATA_TYPES, isInRange } from "@/lib/dataTypeConfig";
 import {
   formatByteRepresentation,
   isMultiByte,
-  type Endianness,
 } from "@/lib/byteUtils";
 import { LaptopMinimalCheck, Check, X } from "lucide-react";
 
 type DataTypeRangeStatusProps = {
   baseTenValue: string;
-  endianness: Endianness;
 };
 
 export function DataTypeRangeStatus({
   baseTenValue,
-  endianness,
 }: DataTypeRangeStatusProps) {
   return (
     <Popover>
@@ -43,7 +40,6 @@ export function DataTypeRangeStatus({
                 ? formatByteRepresentation(
                     baseTenValue,
                     dataType.id,
-                    endianness
                   )
                 : null;
 

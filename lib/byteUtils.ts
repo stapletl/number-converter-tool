@@ -65,7 +65,7 @@ function valueToBytes(
 export function formatByteRepresentation(
   value: string,
   dataTypeId: DataTypeId,
-  endianness: Endianness
+  endianness: Endianness = "big"
 ): ByteRepresentation | null {
   // Return null for empty or partial input
   if (!value || value === "" || value === "-") return null;
