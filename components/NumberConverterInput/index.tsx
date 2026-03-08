@@ -9,6 +9,7 @@ import { AnimatedCopyButton } from "../animated-copy-button";
 
 const BASE_TEN_PLACEHOLDER = "123";
 const ERROR_MESSAGE_DURATION_MS = 4000;
+const MAX_INPUT_LENGTH = 300;
 
 type NumberConverterInputProps = {
   label: string;
@@ -80,6 +81,29 @@ export const NumberConverterInput = ({
           },
         });
       }
+    }
+
+    if (validInput.length > MAX_INPUT_LENGTH) {
+      if (isMobile) {
+        if (errorTimeoutRef.current) clearTimeout(errorTimeoutRef.current);
+        if (exitTimeoutRef.current) clearTimeout(exitTimeoutRef.current);
+        setError(`Input too large (max ${MAX_INPUT_LENGTH} digits)`);
+        setIsExiting(false);
+        errorTimeoutRef.current = setTimeout(() => {
+          setIsExiting(true);
+          exitTimeoutRef.current = setTimeout(() => {
+            setError("");
+            setIsExiting(false);
+          }, 200);
+        }, ERROR_MESSAGE_DURATION_MS);
+      } else {
+        toast.warning("Input too large", {
+          description: `Maximum input length is ${MAX_INPUT_LENGTH} digits`,
+          id: `input-too-large-base-${base}`,
+          classNames: { title: "font-bold text-lg" },
+        });
+      }
+      return;
     }
 
     setBaseTenValue(convertBase(validInput, base, 10));
